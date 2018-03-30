@@ -22,6 +22,10 @@ ActiveRecord::Schema.define(version: 20180327172045) do
   end
 
   create_table "movieusers", force: :cascade do |t|
+    t.integer "info"
+    t.string "name"
+    t.string "provider"
+    t.string "uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
