@@ -1,5 +1,8 @@
 class Movie < ActiveRecord::Base
-    before_save :capitalize_title
+  before_save :capitalize_title
+  has_many :reviews
+  has_many :movieusers, :through => :reviews
+  
   def capitalize_title
     self.title = self.title.split(/\s+/).map(&:downcase).
       map(&:capitalize).join(' ')
@@ -16,6 +19,7 @@ class Movie < ActiveRecord::Base
       release_date && release_date < Date.parse('1 Jan 1930')
   end
   @@grandfathered_date = Date.parse('1 Nov 1968')
+  
   def grandfathered?
     release_date && release_date < @@grandfathered_date
   end

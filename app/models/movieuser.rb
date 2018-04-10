@@ -1,5 +1,7 @@
 class Movieuser < ActiveRecord::Base
 
+  has_many :movies, :through => :reviews
+  
   def self.create_with_omniauth(auth)
     Movieuser.create!(
       :provider => auth["provider"],
